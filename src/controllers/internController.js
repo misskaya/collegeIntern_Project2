@@ -34,7 +34,7 @@ const createIntern = async function (req, res) {
   if ((internData.email).trim().length === 0) {return res.status(400).send({ status: false, message: "email can't be empty" });} 
   if ((internData.email).includes(" ")){{return res.status(400).send({ status: false, message: "Please remove any empty spaces in email" });}}
 
-  let regex = /^[a-z]{2,}[0-9]{2,}@+[a-z]{4,}\.[a-z]{2,4}$/          //[a-z0-9]+@[a-z]+\.[a-z]{2,3}
+  let regex = /^[a-z]{2,}[0-9]{2,}@+[a-z]{4,}\.[a-z]{2,4}$/          
     if(!regex.test((internData.email))){return res.status(400).send({ status: false, message: "email should look like this lowercasetext12@gmail.com, contains first atleast two alphabets ,then minimum two digits & not include any space "})}
 
 
@@ -86,7 +86,7 @@ const createIntern = async function (req, res) {
 
    let savedData = await internModel.create(internData)
    let reqData = await internModel.findById(savedData._id).select({_id:0,name:1,email:1,mobile:1, collegeId:1, isDeleted:1});
-    return res.status(201).send({data: reqData,})
+    return res.status(201).send({status:true, data: reqData,})
     
    
 

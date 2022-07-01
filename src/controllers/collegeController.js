@@ -49,7 +49,7 @@ try {
 
 
     let collegeCreated = await collegeModel.create(collegeData);
-    return res.status(201).send({data: collegeCreated,});
+    return res.status(201).send({status:true, data: collegeCreated,});
   } 
     
 

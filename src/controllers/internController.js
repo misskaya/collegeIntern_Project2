@@ -1,6 +1,6 @@
 const internModel = require("../models/internModel");
 const collegeModel = require("../models/collegeModel");
-const mongoose = require ('mongoose');
+
 
 function isNum(val){      
   return !isNaN(val)
@@ -69,20 +69,15 @@ const createIntern = async function (req, res) {
 
    
    
-   let collegeId = await collegeModel.findOne(({name: (internData.collegeName)})).select('_id')
+   let collegeId = await collegeModel.findOne(({name: (internData.collegeName)})).select({_id:1})
   
     
    if (collegeId==null){ return res.status(400).send({ status: false, msg: "Please use right collegeName" })};
-  //console.log((internData.collegeName))
-  internData['collegeId'] = internData['collegeName'];
+  
+  
   delete internData['collegeName'];
 
-  //console.log(internData);
-
-  // delete internData.assign(o, {[collegeId]: o[collegeName] })[collegeName];
-  
-    
-  internData["collegeId"] = (collegeId._id)
+  internData["collegeId"] = (collegeId)
 
    let savedData = await internModel.create(internData)
    let reqData = await internModel.findById(savedData._id).select({_id:0,name:1,email:1,mobile:1, collegeId:1, isDeleted:1});

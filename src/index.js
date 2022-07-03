@@ -8,7 +8,7 @@ const router = express.Router()
 
 app.use(bodyParser.json());
 
-mongoose.connect("mongodb+srv://neesh:E8DNG8XaM4rrzJCV@cluster0.vlwog.mongodb.net/group45Database", {
+mongoose.connect("mongodb+srv://Kranti_123:Kranti_123@cluster0.ri5cp8x.mongodb.net/Kranti-DB?retryWrites=true&w=majority", {
     useNewUrlParser: true
 })
 .then( () => console.log("MongoDb is connected"))
